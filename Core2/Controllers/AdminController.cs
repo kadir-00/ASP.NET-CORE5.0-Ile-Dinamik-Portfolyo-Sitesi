@@ -28,5 +28,10 @@ namespace Core2.Controllers
         {
             return PartialView();
         }
+
+        public PartialViewResult NavigationPartial()
+        {
+            return PartialView();
+        }
     }
 }
