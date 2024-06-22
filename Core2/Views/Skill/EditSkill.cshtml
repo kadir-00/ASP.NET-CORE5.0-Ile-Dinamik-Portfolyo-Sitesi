@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "EditSkill";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="card-header border-0">
@@ -11,14 +11,30 @@
 
 @using(Html.BeginForm("EditSkill","Skill",FormMethod.Post)) 
 {
-    @Html.HiddenFor(x => x.SkillID )
-<br />
-@Html.Label("Yetenek Basligi")
-@Html.TextBoxFor(x=>x.Title,new {@class = "form-control"})
-<br />
-<label>Deger </label>
- @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
 
-<br />
-<button class="btn btn-success"> Guncelle </button>
+                <p class="card-description"> Yetenek Duzenleme Paneli </p>
+                <form class="forms-sample" >
+                    <div class="form-group">
+                        <label>ID</label>
+                        @Html.TextBoxFor(x => x.SkillID, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Baslik</label>
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Deger</label>
+                        @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <button class="btn btn-dark"> Iptal </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
 }

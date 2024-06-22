@@ -2,7 +2,7 @@
 @model List<Skill>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <h1>Index</h1>
@@ -44,8 +44,8 @@
                         </div>
                     </div>
                 </td>
-                    <td> <a href="/Skill/DeleteSkill/@item.SkillID" class="btn btn-danger">SIL </a> </td>
-                    <td> <a href="/Skill/EditSkill/@item.SkillID" class="btn btn-info">GUNCELLE </a> </td>
+                    <td> <a href="/Skill/DeleteSkill/@item.SkillID" class="btn btn-outline-danger">SIL </a> </td>
+                    <td> <a href="/Skill/EditSkill/@item.SkillID" class="btn btn-outline-info">GUNCELLE </a> </td>
             </tr>
             }
         </tbody>
@@ -53,4 +53,4 @@
     <br />
     <a href="/Skill/AddSkill/" class="btn btn-primary">Yeni Yetenek Ekle </a>
 </div>
-
+  <script src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/vendors/js/vendor.bundle.base.js"></script>

@@ -1,31 +1,48 @@
 ﻿@model EntityLayer.Concrete.Experience
 @{
     ViewData["Title"] = "EditExperience";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
-<div class="card-header border-0">
-    <h3 class="mb-0">Deneyim Guncelleme Sayfasi</h3>
-</div>
 
 
 @using (Html.BeginForm("EditExperience","Experience",FormMethod.Post)) 
 {
- @Html.HiddenFor(x => x.ExperinceID )
-<br />
-@Html.Label("Deneyim Basligi")
-@Html.TextBoxFor(x=>x.Name,new {@class = "form-control"})
-<br />
-<label>Tarih Bilgisi </label>
- @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
-    <br />
-    <label>Resim Yolu </label>
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
-    <br />
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
 
-    <label>Aciklama </label>
-    @Html.TextAreaFor(x => x.Description, 10,3, new { @class = "form-control" })
-<br />
+                <p class="card-description"> Deneyim Duzenleme Paneli </p>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label>ID</label>
+                       @Html.TextBoxFor(x=>x.ExperinceID,new {@class="form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label>Baslik</label>
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Tarih</label>
+                        @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Resim</label>
+                        @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                    </div>
 
-<button class="btn btn-success"> Guncelle </button>
+                    <div class="form-group">
+                        <label>Aciklama</label>
+                        @Html.TextAreaFor(x => x.Description,5,3, new { @class = "form-control" })
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <button class="btn btn-dark"> Iptal </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+}
 }

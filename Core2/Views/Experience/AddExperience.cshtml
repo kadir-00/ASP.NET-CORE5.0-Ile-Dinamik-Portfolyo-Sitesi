@@ -1,7 +1,7 @@
 ﻿@model EntityLayer.Concrete.Experience
 @{
     ViewData["Title"] = "AddExperience";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="card-header border-0">
@@ -10,22 +10,33 @@
 
 @using (Html.BeginForm("AddExperience","Experience",FormMethod.Post)) 
 {
- @Html.HiddenFor(x => x.ExperinceID )
-<br />
-@Html.Label("Deneyim Basligi")
-@Html.TextBoxFor(x=>x.Name,new {@class = "form-control"})
-<br />
-<label>Tarih Bilgisi </label>
- @Html.TextBoxFor(x => x.Date, new { @class = "form-control" })
-    <br />
-    <label>Resim Yolu </label>
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
-    <br />
-
-    <label>Aciklama </label>
-    @Html.TextAreaFor(x => x.Description, 10,3, new { @class = "form-control" })
-<br />
-
-<button class="btn btn-success"> Kaydet </button>
-
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+             
+                <p class="card-description"> Yeni Deneyim Ekleme Paneli </p>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label >Baslik</label>
+                        <input type="text" class="form-control" name="Name" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Tarih</label>
+                        <input type="text" class="form-control" name="Date" placeholder="Tarih">
+                    </div>
+                    <div class="form-group">
+                        <label>Resim</label>
+                        <input type="text" class="form-control" name="ImageUrl" placeholder="Resim">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Aciklama</label>
+                        <textarea class="form-control" name="Description" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <button class="btn btn-dark"> Iptal </button>
+                </form>
+            </div>
+        </div>
+    </div>
 }
