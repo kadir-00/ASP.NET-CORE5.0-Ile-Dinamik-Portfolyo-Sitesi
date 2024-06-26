@@ -1,0 +1,16 @@
+﻿@model EntityLayer.Concrete.Annoncoument
+@{
+    ViewData["Title"] = "AnnoncoumentDetails";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Duyuru Detaylari </h1>
+<br />
+<form class="form-group">
+    @Html.Label("ID")
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+    <br />
+    @Html.Label("Icerik")
+    @Html.TextAreaFor(x => x.Content, 6, 3, new { @class = "form-control" })
+
+</form>

@@ -34,6 +34,8 @@ namespace DataAccessLayer.Concrete
 		public DbSet<ToDoList> ToDoListS { get; set; }
 		public DbSet<Test1> Test1s  { get; set; }
 
+		public DbSet<Annoncoument>	Annoncouments { get; set; }
+
 
 
     }
