@@ -28,13 +28,11 @@ namespace DataAccessLayer.Concrete
 		public DbSet<SocialMedia> SocialMedias { get; set; }
 		public DbSet<Testimonial> Testimonials { get; set; }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserMessage> UserMessages { get; set; } 
-
 		public DbSet<ToDoList> ToDoListS { get; set; }
 		public DbSet<Test1> Test1s  { get; set; }
 
 		public DbSet<Annoncoument>	Annoncouments { get; set; }
+		public DbSet<WriterMessage> WriterMessages { get; set; }
 
 
 

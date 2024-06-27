@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ExperinceManager : IGenericService<Experience>
+    public class ExperinceManager : IExperienceService
     {
         IExperienceDal _experienceDal;
 
@@ -36,6 +36,11 @@ namespace Business.Concrete
         public List<Experience> TGetList()
         {
            return _experienceDal.GetList();
+        }
+
+        public List<Experience> TGetListbyFilter()
+        {
+            throw new NotImplementedException();
         }
 
         public void TUpdate(Experience t)

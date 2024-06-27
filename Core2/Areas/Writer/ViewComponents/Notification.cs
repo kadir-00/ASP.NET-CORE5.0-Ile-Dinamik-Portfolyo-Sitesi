@@ -12,7 +12,7 @@ namespace Core2.Areas.Writer.ViewComponents
         {
            
             var values = annoncoumentManager.TGetList().Take(5).ToList();
-            return View();
+            return View(values);
 
         }
     }

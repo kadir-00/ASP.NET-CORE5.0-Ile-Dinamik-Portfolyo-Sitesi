@@ -26,7 +26,7 @@ namespace Core2.Areas.Writer.Controllers
             model.Name = values.Name;
             model.Surname = values.Surname;
             model.PictureURL = values.ImageUrl;
-            return View(model);
+            return View(values);
         }
 
         [HttpPost]

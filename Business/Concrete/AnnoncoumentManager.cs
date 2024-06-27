@@ -38,6 +38,11 @@ namespace Business.Concrete
            return _annoncoumentDal.GetList();
         }
 
+        public List<Annoncoument> TGetListbyFilter()
+        {
+            throw new NotImplementedException();
+        }
+
         public void TUpdate(Annoncoument t)
         {
             throw new NotImplementedException();
