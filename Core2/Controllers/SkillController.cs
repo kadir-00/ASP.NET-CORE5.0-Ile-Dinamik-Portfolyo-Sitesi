@@ -10,9 +10,6 @@ namespace Core2.Controllers
         SkillManager skillManager = new SkillManager(new EfSkillDal());
         public IActionResult Index()
         {
-            ViewBag.v1 = "Yetenek Listesi";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Listesi";
             var values = skillManager.TGetList();
             return View(values);
         }
@@ -20,9 +17,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult AddSkill() 
         {
-            ViewBag.v1 = "Yetenek Ekleme";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Ekleme";
         return View();
         }
 
@@ -43,9 +37,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult EditSkill(int id)
         {
-            ViewBag.v1 = "Duzenleme";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Duzenleme";
             var values = skillManager.TGetById(id);
             return View(values);
         }

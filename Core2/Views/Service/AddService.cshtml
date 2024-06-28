@@ -1,7 +1,7 @@
 ﻿@model EntityLayer.Concrete.Service
 @{
     ViewData["Title"] = "AddService";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="card-header border-0">
@@ -10,6 +10,10 @@
 
 @using (Html.BeginForm("AddService", "Service", FormMethod.Post))
 {
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
     @Html.HiddenFor(x => x.ServiceID)
     <br />
     @Html.Label("Deneyim Basligi")
@@ -17,9 +21,13 @@
     <br />
    
     <label>Resim Yolu </label>
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" }) 
-
-    <button class="btn btn-success"> Kaydet </button>
+    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <button class="btn btn-outline-success"> Kaydet </button>
 
 }
 

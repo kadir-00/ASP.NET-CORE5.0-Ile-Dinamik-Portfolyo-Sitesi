@@ -17,7 +17,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult AddService()
         {
-          
             return View();
         }
 
@@ -38,8 +37,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult EditService(int id)
         {
-           
-            
             var values = serviceManager.TGetById(id);
             return View(values);
         }

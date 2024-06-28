@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
+    [Route("Writer/Message")]
     public class MessageController : Controller
     {
         WriterMessageManager writerMessageManager = new WriterMessageManager(new EfWriterDal());
@@ -22,6 +23,8 @@ namespace Core2.Areas.Writer.Controllers
             _userManager = userManager;
         }
 
+        [Route("")]
+        [Route("ReceiverMessage")]
         public async Task< IActionResult> ReceiverMessage(string p)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -30,6 +33,8 @@ namespace Core2.Areas.Writer.Controllers
             return View(messagelist);
         }
 
+        [Route("")]
+        [Route("SenderMessage")]
         public async Task<IActionResult> SenderMessage(string p)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
@@ -38,7 +43,7 @@ namespace Core2.Areas.Writer.Controllers
             return View(messagelist);
         }
 
-        
+        [Route("MessageDetails/{id}")]
         public IActionResult MessageDetails(int id)
         {
             WriterMessage writerMessage = writerMessageManager.TGetById(id);
@@ -46,6 +51,7 @@ namespace Core2.Areas.Writer.Controllers
 
         }
 
+        [Route("ReceiverMessageDetails/{id}")]
         public IActionResult ReceiverMessageDetails(int id)
         {
             WriterMessage writerMessage = writerMessageManager.TGetById(id);
@@ -55,17 +61,21 @@ namespace Core2.Areas.Writer.Controllers
 
 
         [HttpGet]
+        [Route("")]
+        [Route("SendMessage")]
         public  IActionResult SendMessage()
         { 
         return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(WriterMessage p)
+        [Route("")]
+        [Route("SendMessage")]
+        public async Task<IActionResult> SendMessage(WriterMessage  p)
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             string mail = values.Email;
-            string name = values.Name+""+values.Surname;
+            string name = values.Name+ " " +values.Surname;
             p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             p.Sender = mail;
             p.SenderName = name;
@@ -73,8 +83,8 @@ namespace Core2.Areas.Writer.Controllers
             var usernamesurname= c.Users.Where(x => x.Email == p.Receiver).Select(y => y.Name+" "+y.Surname).FirstOrDefault();
             p.ReceiverName = usernamesurname;
             writerMessageManager.TAdd(p);
-
             return RedirectToAction("SenderMessage", "Message");
+           
         }
     }
 }

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
+    [Route("Writer/[controller]/[action]")]
+
     public class ProfileController : Controller
     {
         private readonly UserManager<WriterUser> _userManager;
@@ -26,7 +28,7 @@ namespace Core2.Areas.Writer.Controllers
             model.Name = values.Name;
             model.Surname = values.Surname;
             model.PictureURL = values.ImageUrl;
-            return View(values);
+            return View(model);
         }
 
         [HttpPost]
@@ -45,10 +47,11 @@ namespace Core2.Areas.Writer.Controllers
             }
             user.Name = p.Name;
             user.Surname = p.Surname;
+            user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, p.Password);
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index","Default");
+                return RedirectToAction("Index","Login");
             }
             return View();
         }

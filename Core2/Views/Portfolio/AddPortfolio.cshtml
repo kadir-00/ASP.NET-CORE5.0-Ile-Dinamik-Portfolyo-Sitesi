@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "AddPortfolio";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="card-header border-0">
@@ -11,7 +11,11 @@
 
 @using (Html.BeginForm("AddPortfolio", "Portfolio", FormMethod.Post))
 {
-  
+  <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Yeni Proje Ekleme Paneli </p>
+                <form class="forms-sample">
     <br />
     @Html.Label("Proje Basligi")
     @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
@@ -39,10 +43,12 @@
     @Html.TextBoxFor(x => x.Value, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.Value)
     <br />
+                </form>
+            </div>
+        </div>
+    </div>
 
-    
-
-    <button class="btn btn-success"> Kaydet </button>
+    <button class="btn btn-outline-success"> Kaydet </button>
 
 }
 

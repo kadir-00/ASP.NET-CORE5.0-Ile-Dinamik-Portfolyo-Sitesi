@@ -38,9 +38,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult EditExperience(int id)
         {
-            ViewBag.v1 = "Duzenleme";
-            ViewBag.v2 = "Yetenekler";
-            ViewBag.v3 = "Yetenek Duzenleme";
             var values = experinceManager.TGetById(id);
             return View(values);
         }

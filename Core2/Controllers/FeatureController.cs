@@ -13,7 +13,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           
             var values = featureManager.TGetById(1);
             return View(values);
         }
@@ -23,10 +22,6 @@ namespace Core2.Controllers
         {    
                 featureManager.TUpdate(feature);
                 return RedirectToAction("Index","Default");
-  
-            
-
-
         }
     }
 }

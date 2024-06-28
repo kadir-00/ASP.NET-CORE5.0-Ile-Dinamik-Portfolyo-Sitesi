@@ -27,8 +27,6 @@ namespace Core2.Controllers
         [HttpPost]
         public IActionResult AddPortfolio(Portfolio p)
         {
-            
-
             PortfolioValidator validatons = new PortfolioValidator();
             FluentValidation.Results.ValidationResult validationResult = validatons.Validate(p);
            
@@ -45,8 +43,6 @@ namespace Core2.Controllers
                 }
             }
             return View();
-           
-
         }
 
         public IActionResult DeletePortfolio(int id)
@@ -54,7 +50,6 @@ namespace Core2.Controllers
             var values = portfolioManager.TGetById(id);
             portfolioManager.TDelete(values);
             return RedirectToAction("Index");
-
         }
 
         [HttpGet]

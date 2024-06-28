@@ -12,7 +12,6 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-
             var values = aboutManager.TGetById(1);
             return View(values);
         }
@@ -22,10 +21,6 @@ namespace Core2.Controllers
         {
             aboutManager.TUpdate(about);
             return RedirectToAction("Index", "Default");
-
-
-
-
         }
     }
 }

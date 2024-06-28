@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
+    [Route("Writer/[controller]/[action]")]
     public class LoginController : Controller
     {
         private readonly SignInManager<WriterUser> _signInManager;
@@ -30,7 +31,8 @@ namespace Core2.Areas.Writer.Controllers
                 var result = await _signInManager.PasswordSignInAsync(p.UserName, p.Password, true, true); // kontrol eden method
                 if (result.Succeeded) 
                 { 
-                return RedirectToAction("Index", "Default");
+                return RedirectToAction("Index", "Profile",new {area="Writer" });
+
                 }
                 else
                 {
@@ -39,6 +41,13 @@ namespace Core2.Areas.Writer.Controllers
 
             }
             return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index","Login");
+
         }
     }
 }

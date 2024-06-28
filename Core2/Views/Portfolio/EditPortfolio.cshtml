@@ -1,7 +1,7 @@
 ﻿@model EntityLayer.Concrete.Portfolio
 @{
     ViewData["Title"] = "EditPortfolio";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
 <div class="card-header border-0">
@@ -11,6 +11,10 @@
 
 @using (Html.BeginForm("EditPortfolio", "Portfolio", FormMethod.Post))
 {
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample">
     @Html.HiddenFor(x => x.PortfolioID)
     <br />
 
@@ -45,10 +49,11 @@
     @Html.TextBoxFor(x => x.Platform, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.Platform)
     <br />
-
-
-
-    <button class="btn btn-success"> Kaydet </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-outline-success"> Kaydet </button>
     
 
     
