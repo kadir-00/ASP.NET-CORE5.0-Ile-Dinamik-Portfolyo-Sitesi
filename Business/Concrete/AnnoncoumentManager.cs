@@ -20,12 +20,12 @@ namespace Business.Concrete
 
         public void TAdd(Annoncoument t)
         {
-            throw new NotImplementedException();
+            _annoncoumentDal.Insert(t);
         }
 
         public void TDelete(Annoncoument t)
         {
-            throw new NotImplementedException();
+            _annoncoumentDal.Delete(t);
         }
 
         public Annoncoument TGetById(int id)
@@ -35,7 +35,7 @@ namespace Business.Concrete
 
         public List<Annoncoument> TGetList()
         {
-           return _annoncoumentDal.GetList();
+            return _annoncoumentDal.GetList();
         }
 
         public List<Annoncoument> TGetListbyFilter()
@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public void TUpdate(Annoncoument t)
         {
-            throw new NotImplementedException();
+            _annoncoumentDal.Update(t);
         }
     }
 }

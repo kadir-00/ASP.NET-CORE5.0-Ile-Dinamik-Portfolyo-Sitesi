@@ -1,0 +1,29 @@
+@model EntityLayer.Concrete.ToDoList
+@{
+    ViewData["Title"] = "AddToDoList";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="card-header border-0">
+    <h3 class="mb-0">Görev Ekleme Sayfası</h3>
+</div>
+
+@using (Html.BeginForm("AddToDoList", "ToDoList", FormMethod.Post))
+{
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-description"> Yeni Görev Ekleme Paneli </p>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label>İçerik</label>
+                        <input type="text" class="form-control" name="Content" placeholder="Görev İçeriği">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <button class="btn btn-dark"> İptal </button>
+                </form>
+            </div>
+        </div>
+    </div>
+}

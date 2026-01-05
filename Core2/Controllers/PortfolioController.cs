@@ -29,17 +29,17 @@ namespace Core2.Controllers
         {
             PortfolioValidator validatons = new PortfolioValidator();
             FluentValidation.Results.ValidationResult validationResult = validatons.Validate(p);
-           
+
             if (validationResult.IsValid)
             {
                 portfolioManager.TAdd(p);
                 return RedirectToAction("Index");
             }
-            else 
+            else
             {
                 foreach (var item in validationResult.Errors)
                 {
-                    ModelState.AddModelError(item.PropertyName , item.ErrorMessage);
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
             return View();
@@ -55,7 +55,7 @@ namespace Core2.Controllers
         [HttpGet]
         public IActionResult EditPortfolio(int id)
         {
-           
+
             var values = portfolioManager.TGetById(id);
             return View(values);
         }
@@ -74,12 +74,25 @@ namespace Core2.Controllers
             {
                 foreach (var item in validationResult.Errors)
                 {
-                    ModelState.AddModelError(item.PropertyName , item.ErrorMessage);
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
             return View();
-          
-            
+        }
+
+        public IActionResult ChangeStatus(int id)
+        {
+            var value = portfolioManager.TGetById(id);
+            if (value.Status == true)
+            {
+                value.Status = false;
+            }
+            else
+            {
+                value.Status = true;
+            }
+            portfolioManager.TUpdate(value);
+            return RedirectToAction("Index");
         }
     }
 }

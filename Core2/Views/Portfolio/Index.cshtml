@@ -7,70 +7,64 @@
     Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col">
-        <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0">
-                <h3 class="text-white mb-0">Projelerim</h3>
-            </div>
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Projelerim</h4>
             <div class="table-responsive">
-                <table class="table align-items-center table-dark table-flush">
-                    <thead class="thead-dark">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <th scope="col" class="sort" data-sort="name">Proje</th>
-                            <th scope="col" class="sort" data-sort="budget">Ucret</th>
-                            <th scope="col" class="sort" data-sort="status">Durum</th>
-                           
-                            <th scope="col" class="sort" data-sort="completion">Tamamlanma Orani</th>
-                            <th scope="col">SIL</th>
-                            <th scope="col">GUNCELLE</th>
+                            <th>Proje</th>
+                            <th>Ücret</th>
+                            <th>Durum</th>
+                            <th>Tamamlanma Oranı</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
                         </tr>
                     </thead>
-                    <tbody class="list">
+                    <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                            <th scope="row">
-                                <div class="media align-items-center">
-                                    <a href="#" class="avatar rounded-circle mr-3">
-
-                                        <img alt="Image placeholder" src="@item.Platform">
-                                    </a>
-                                    <div class="media-body">
-                                        <span class="name mb-0 text-sm">@item.Name</span>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="@item.Platform" alt="image"
+                                            style="width: 40px; height: 40px; border-radius: 50%; margin-right: 10px;" />
+                                        <span>@item.Name</span>
                                     </div>
-                                </div>
-                            </th>
-                            <td class="budget">
-                                @item.Price
-
-                            </td>
-                            <td>
-                                <span class="badge badge-dot mr-4">
-                                    <i class="bg-success"></i>
-                                    <span class="status">Tamamlandi</span>
-                                </span>
-                            </td>
-                            
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <span class="completion mr-2">@item.Value %</span>
-                                    <div>
-                                        <div class="progress">
-                                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="@item.Value" aria-valuemin="0" aria-valuemax="100" style="width:@item.Value %;"></div>
+                                </td>
+                                <td>@item.Price</td>
+                                <td>
+                                    @if (item.Status)
+                                    {
+                                        <a href="/Portfolio/ChangeStatus/@item.PortfolioID"
+                                            class="badge badge-success">Tamamlandı</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Portfolio/ChangeStatus/@item.PortfolioID" class="badge badge-danger">Devam
+                                            Ediyor</a>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="mr-2">@item.Value %</span>
+                                        <div class="progress" style="width: 100px;">
+                                            <div class="progress-bar bg-warning" role="progressbar"
+                                                style="width: @item.Value%" aria-valuenow="@item.Value" aria-valuemin="0"
+                                                aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                                <td> <a href="/Portfolio/DeletePortfolio/@item.PortfolioID" class="btn btn-outline-danger"> SIL </a> </td>
-                                <td> <a href="/Portfolio/EditPortfolio/@item.PortfolioID" class="btn btn-outline-info"> GUNCELLE </a> </td>
-                               
-                        </tr>
+                                </td>
+                                <td><a href="/Portfolio/DeletePortfolio/@item.PortfolioID"
+                                        class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/Portfolio/EditPortfolio/@item.PortfolioID"
+                                        class="btn btn-outline-info">Güncelle</a></td>
+                            </tr>
                         }
-                        
                     </tbody>
                 </table>
-               
             </div>
         </div>
     </div>
@@ -78,4 +72,3 @@
 <br />
 <br />
 <a href="/Portfolio/AddPortfolio/" class="btn btn-info">Yeni Proje Ekle </a>
-

@@ -13,9 +13,9 @@ namespace Core2.Controllers
 			return View();
 		}
 
-		public PartialViewResult HeaderPartial() 
+		public PartialViewResult HeaderPartial()
 		{
-		return PartialView();
+			return PartialView();
 		}
 
 		public PartialViewResult NavbarPartial()
@@ -24,21 +24,21 @@ namespace Core2.Controllers
 		}
 
 		[HttpGet]
-		public PartialViewResult SendMessage() 
+		public PartialViewResult SendMessage()
 		{
 			return PartialView();
-		
+
 		}
 
-        [HttpPost]
-        public PartialViewResult SendMessage(Message p)
-        {
-            MessageManager messageManager = new MessageManager(new EfMessageDal());
-            p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            p.Status = true;
-            messageManager.TAdd(p);
-            return PartialView();
+		[HttpPost]
+		public IActionResult SendMessage(Message p)
+		{
+			MessageManager messageManager = new MessageManager(new EfMessageDal());
+			p.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+			p.Status = true;
+			messageManager.TAdd(p);
+			return RedirectToAction("Index");
 
-        }
-    }
+		}
+	}
 }

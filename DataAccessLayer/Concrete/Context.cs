@@ -14,7 +14,7 @@ namespace DataAccessLayer.Concrete
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer("server=KDR;database=CoreProjeDb;integrated security=true;Encrypt=false;");
+			optionsBuilder.UseSqlServer("server=DESKTOP-R0GSR22\\SQLEXPRESS;database=CoreProjeDb;integrated security=true;Encrypt=false;");
 		}
 		public DbSet<About> Abouts { get; set; }
 

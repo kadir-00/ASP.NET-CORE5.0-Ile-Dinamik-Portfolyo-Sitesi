@@ -20,22 +20,22 @@ namespace Business.Concrete
 
         public void TAdd(ToDoList t)
         {
-            throw new NotImplementedException();
+            _toDoListDal.Insert(t);
         }
 
         public void TDelete(ToDoList t)
         {
-            throw new NotImplementedException();
+            _toDoListDal.Delete(t);
         }
 
         public ToDoList TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _toDoListDal.GetByID(id);
         }
 
         public List<ToDoList> TGetList()
         {
-           return _toDoListDal.GetList();
+            return _toDoListDal.GetList();
         }
 
         public List<ToDoList> TGetListbyFilter()
@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public void TUpdate(ToDoList t)
         {
-            throw new NotImplementedException();
+            _toDoListDal.Update(t);
         }
     }
 }

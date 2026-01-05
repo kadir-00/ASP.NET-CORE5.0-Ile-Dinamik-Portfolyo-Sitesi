@@ -9,18 +9,44 @@ namespace Core2.Controllers
     {
         AboutManager aboutManager = new AboutManager(new EfAboutDal());
 
-        [HttpGet]
         public IActionResult Index()
         {
-            var values = aboutManager.TGetById(1);
+            var values = aboutManager.TGetList();
+            return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult AddAbout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddAbout(About about)
+        {
+            aboutManager.TAdd(about);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteAbout(int id)
+        {
+            var values = aboutManager.TGetById(id);
+            aboutManager.TDelete(values);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditAbout(int id)
+        {
+            var values = aboutManager.TGetById(id);
             return View(values);
         }
 
         [HttpPost]
-        public IActionResult Index(About about)
+        public IActionResult EditAbout(About about)
         {
             aboutManager.TUpdate(about);
-            return RedirectToAction("Index", "Default");
+            return RedirectToAction("Index");
         }
     }
 }

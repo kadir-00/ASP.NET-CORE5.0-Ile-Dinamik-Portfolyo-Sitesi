@@ -9,17 +9,17 @@
     <h3 class="mb-0">Yetenek Duzenleme Sayfasi</h3>
 </div>
 
-@using(Html.BeginForm("EditSkill","Skill",FormMethod.Post)) 
+@using (Html.BeginForm("EditSkill", "Skill", FormMethod.Post))
 {
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
 
                 <p class="card-description"> Yetenek Duzenleme Paneli </p>
-                <form class="forms-sample" >
+                <form class="forms-sample">
                     <div class="form-group">
                         <label>ID</label>
-                        @Html.TextBoxFor(x => x.SkillID, new { @class = "form-control" })
+                        @Html.TextBoxFor(x => x.SkillID, new { @class = "form-control", @readonly = "readonly" })
                     </div>
                     <div class="form-group">
                         <label>Baslik</label>
