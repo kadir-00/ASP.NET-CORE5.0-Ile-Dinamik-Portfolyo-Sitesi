@@ -1,24 +1,32 @@
 ﻿@model EntityLayer.Concrete.WriterMessage
-
 @{
     ViewData["Title"] = "ReceiverMessageDetails";
-    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+    Layout = "~/Areas/Writer/Views/Shared/_WriterLayout.cshtml";
 }
 
-<h1>Mesaj Detaylari Detaylari </h1>
-<br />
-<form class="form-group">
-
-    @Html.HiddenFor(x => x.WriterMessageID, new { @class = "form-control" })
-    <br />
-    @Html.Label("Alici Ismi")
-    @Html.TextBoxFor(x => x.ReceiverName, new { @class = "form-control" })
-    <br />
-    @Html.Label("Alici Mail")
-    @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
-    <br />
-    @Html.Label("Mesaj")
-    @Html.TextAreaFor(x => x.MessageContent, 6, 3, new { @class = "form-control" })
-
-</form>
-
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Mesaj Detayları</h4>
+            <form class="forms-sample">
+                <div class="form-group">
+                    <label>Gönderen Adı</label>
+                    <input type="text" class="form-control" value="@Model.SenderName" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Gönderen Email</label>
+                    <input type="text" class="form-control" value="@Model.Sender" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Konu</label>
+                    <input type="text" class="form-control" value="@Model.Subject" disabled>
+                </div>
+                <div class="form-group">
+                    <label>İçerik</label>
+                    <textarea class="form-control" rows="10" disabled>@Model.MessageContent</textarea>
+                </div>
+                <a href="/Writer/Message/ReceiverMessage" class="btn btn-primary mr-2">Geri Dön</a>
+            </form>
+        </div>
+    </div>
+</div>

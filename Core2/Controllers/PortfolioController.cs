@@ -2,12 +2,14 @@
 using Business.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using FluentValidation;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PortfolioController : Controller
     {
         PortfolioManager portfolioManager = new PortfolioManager(new EfPortfolioDal());

@@ -1,0 +1,24 @@
+@model Core2.Models.RoleViewModel
+
+@{
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Rol Ekleme</h4>
+                <form class="forms-sample" method="post">
+                    <div class="form-group">
+                        <label>Rol Adi</label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                    <a href="/AdminRole/Index/" class="btn btn-dark">Iptal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

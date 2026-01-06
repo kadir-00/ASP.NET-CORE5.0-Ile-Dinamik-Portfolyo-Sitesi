@@ -1,0 +1,25 @@
+@model EntityLayer.Concrete.Annoncoument
+@{
+    ViewData["Title"] = "AddAnnouncement";
+    Layout = "~/Areas/Writer/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Yeni Duyuru Ekleme Paneli</h4>
+            <form class="forms-sample" method="post">
+                <div class="form-group">
+                    <label>Başlık</label>
+                    <input type="text" class="form-control" name="Title" placeholder="Duyuru Başlığı">
+                </div>
+                <div class="form-group">
+                    <label>İçerik</label>
+                    <textarea class="form-control" name="Content" rows="10" placeholder="Duyuru İçeriği"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                <button class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>

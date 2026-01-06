@@ -1,13 +1,16 @@
 ﻿using Business.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ServiceController : Controller
     {
         ServiceManager serviceManager = new ServiceManager(new EfServiceDal());
+
         public IActionResult Index()
         {
             var values = serviceManager.TGetList();
@@ -35,14 +38,14 @@ namespace Core2.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditService(int id)
+        public IActionResult UpdateService(int id)
         {
             var values = serviceManager.TGetById(id);
             return View(values);
         }
 
         [HttpPost]
-        public IActionResult EditService(Service service)
+        public IActionResult UpdateService(Service service)
         {
             serviceManager.TUpdate(service);
             return RedirectToAction("Index");

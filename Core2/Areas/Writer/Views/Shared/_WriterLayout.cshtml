@@ -1,0 +1,200 @@
+@using Microsoft.AspNetCore.Identity
+@using EntityLayer.Concrete
+@inject UserManager<WriterUser> _userManager
+@{
+    Layout = null;
+    var user = await _userManager.FindByNameAsync(User.Identity.Name);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/skydash/vendors/feather/feather.css">
+    <link rel="stylesheet" href="/skydash/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/skydash/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="/skydash/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="/skydash/js/select.dataTables.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/skydash/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="/skydash/images/favicon.png" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand brand-logo mr-5" href="/Writer/Dashboard/Index"><img
+                        src="/skydash/images/logo.svg" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="/Writer/Dashboard/Index"><img
+                        src="/skydash/images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="icon-menu"></span>
+                </button>
+                <ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                        <div class="input-group">
+                            <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                                <span class="input-group-text" id="search">
+                                    <i class="icon-search"></i>
+                                </span>
+                            </div>
+                            <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
+                                aria-label="search" aria-describedby="search">
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                            data-toggle="dropdown">
+                            <i class="icon-bell mx-0"></i>
+                            <span class="count"></span>
+                        </a>
+                        @await Component.InvokeAsync("Notification")
+                    </li>
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                            <img src="/userimage/@user.ImageUrl" alt="profile" />
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
+                            aria-labelledby="profileDropdown">
+                            <a class="dropdown-item">
+                                <i class="ti-settings text-primary"></i>
+                                Settings
+                            </a>
+                            <a class="dropdown-item" href="/AdminLogin/LogOut">
+                                <i class="ti-power-off text-primary"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Dashboard/Index">
+                            <i class="icon-grid menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#message-menu" aria-expanded="false"
+                            aria-controls="message-menu">
+                            <i class="ti-email menu-icon"></i>
+                            <span class="menu-title">Mesajlar</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="collapse" id="message-menu">
+                            <ul class="nav flex-column sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="/Writer/Message/ReceiverMessage">Gelen
+                                        Kutusu</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Writer/Message/SenderMessage">Giden
+                                        Kutusu</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/Writer/Message/SendMessage">Yeni
+                                        Mesaj</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Default/Index">
+                            <i class="ti-announcement menu-icon"></i>
+                            <span class="menu-title">Duyurular</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Writer/Profile/Index">
+                            <i class="icon-head menu-icon"></i>
+                            <span class="menu-title">Profilim</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.
+                            Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin
+                                template</a> from BootstrapDash. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made
+                            with <i class="ti-heart text-danger ml-1"></i></span>
+                    </div>
+                </footer>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script src="/skydash/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/skydash/vendors/chart.js/Chart.min.js"></script>
+    <script src="/skydash/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="/skydash/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="/skydash/js/dataTables.select.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/skydash/js/off-canvas.js"></script>
+    <script src="/skydash/js/hoverable-collapse.js"></script>
+    <script src="/skydash/js/template.js"></script>
+    <script src="/skydash/js/settings.js"></script>
+    <script src="/skydash/js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="/skydash/js/dashboard.js"></script>
+    <script src="/skydash/js/Chart.roundedBarCharts.js"></script>
+    <!-- End custom js for this page-->
+    <script>
+        $(document).ready(function () {
+            // Remove active class from all nav items
+            $('.nav-item').removeClass('active');
+            $('.nav-link').removeClass('active');
+            $('.collapse').removeClass('show');
+
+            var currentUrl = window.location.pathname;
+
+            $('.nav .nav-item .nav-link').each(function () {
+                var href = $(this).attr('href');
+                if (href === currentUrl) {
+                    $(this).closest('.nav-item').addClass('active');
+                    $(this).closest('.collapse').addClass('show');
+                    $(this).closest('.collapse').prev('.nav-link').closest('.nav-item').addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

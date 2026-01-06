@@ -2,88 +2,47 @@
 @model List<Annoncoument>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_WriterLayout.cshtml";
-}
-@{
-    string color = "";
+    Layout = "~/Areas/Writer/Views/Shared/_WriterLayout.cshtml";
 }
 
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Duyurular</h4>
-           
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Baslik</th>
+                            <th>Başlık</th>
                             <th>Tarih</th>
-                            <th>Tur</th>
+                            <th>Durum</th>
                             <th>Detaylar</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            if (item.Status == "Blog")
-                            {
-                                color = "badge badge-danger";
-                            }
-                            if (item.Status == "Video")
-                            {
-                                color = "badge badge-warning";
-                            }
-                            if (item.Status == "Konferans")
-                            {
-                                color = "badge badge-success";
-                            }
-                            if (item.Status == "Arastirma")
-                            {
-                                color = "badge badge-info";
-                            }
-                            if (item.Status == "Online")
-                            {
-                                color = "badge badge-primary";
-                            }
-
-                        <tr>
-                            <th>@item.ID</th>
-                            <td>@item.Title</td>
-                            <td>@(((DateTime)item.Date).ToString("dd-MMM-yyy"))  </td>
-                           <td><label class="@color">@item.Status </label></td>
-                                <td> <a href="/Writer/Default/AnnoncoumentDetails/@item.ID" class="btn btn-outline-primary">Detaylar </a> </td>
-                        </tr>
+                            <tr>
+                                <th>@item.ID</th>
+                                <td>@item.Title</td>
+                                <td>@item.Date.ToShortDateString()</td>
+                                <td><label class="badge badge-success">@item.Status</label></td>
+                                <td><a href="/Writer/Default/AnnouncementDetails/@item.ID"
+                                        class="btn btn-outline-primary">Detaylar</a></td>
+                                <td><a href="/Writer/Default/DeleteAnnouncement/@item.ID"
+                                        class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/Writer/Default/EditAnnouncement/@item.ID"
+                                        class="btn btn-outline-warning">Güncelle</a></td>
+                            </tr>
                         }
-                    @*     <tr>
-                            <td>Messsy</td>
-                            <td>53275532</td>
-                            <td>15 May 2017</td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                        <tr>
-                            <td>John</td>
-                            <td>53275533</td>
-                            <td>14 May 2017</td>
-                            <td><label class="badge badge-info">Fixed</label></td>
-                        </tr>
-                        <tr>
-                            <td>Peter</td>
-                            <td>53275534</td>
-                            <td>16 May 2017</td>
-                            <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td>20 May 2017</td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
-                    </tbody> *@
+                    </tbody>
                 </table>
+                <br />
+                <a href="/Writer/Default/AddAnnouncement/" class="btn btn-primary">Yeni Duyuru Ekle</a>
             </div>
         </div>
     </div>
 </div>
-

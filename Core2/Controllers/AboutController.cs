@@ -2,9 +2,11 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AboutController : Controller
     {
         AboutManager aboutManager = new AboutManager(new EfAboutDal());

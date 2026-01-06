@@ -1,10 +1,12 @@
 ﻿using Business.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SkillController : Controller
     {
         SkillManager skillManager = new SkillManager(new EfSkillDal());
@@ -15,9 +17,9 @@ namespace Core2.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddSkill() 
+        public IActionResult AddSkill()
         {
-        return View();
+            return View();
         }
 
         [HttpPost]
@@ -27,11 +29,11 @@ namespace Core2.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult DeleteSkill(int id) 
+        public IActionResult DeleteSkill(int id)
         {
             var values = skillManager.TGetById(id);
             skillManager.TDelete(values);
-            return RedirectToAction("Index"); 
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -44,7 +46,7 @@ namespace Core2.Controllers
         [HttpPost]
         public IActionResult EditSkill(Skill skill)
         {
-          skillManager.TUpdate(skill);
+            skillManager.TUpdate(skill);
             return RedirectToAction("Index");
         }
     }

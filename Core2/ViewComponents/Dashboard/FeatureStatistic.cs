@@ -8,13 +8,23 @@ namespace Core2.ViewComponents.Dashboard
 {
     public class FeatureStatistic : ViewComponent
     {
-      Context c = new Context();
+        Context c = new Context();
         public IViewComponentResult Invoke()
         {
-            ViewBag.v1 = c.Skills.Count();
-            ViewBag.v2 = c.Messages.Where(x=>x.Status==false).Count(); 
-            ViewBag.v3 = c.Messages.Where(x=>x.Status==true).Count(); 
-            ViewBag.v4 = c.Experionces.Count();
+            try
+            {
+                ViewBag.v1 = c.Skills.Count();
+                ViewBag.v2 = c.Messages.Where(x => x.Status == false).Count();
+                ViewBag.v3 = c.Messages.Where(x => x.Status == true).Count();
+                ViewBag.v4 = c.Experionces.Count();
+            }
+            catch
+            {
+                ViewBag.v1 = 0;
+                ViewBag.v2 = 0;
+                ViewBag.v3 = 0;
+                ViewBag.v4 = 0;
+            }
             return View();
         }
     }

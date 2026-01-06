@@ -2,10 +2,12 @@
 using Business.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FeatureController : Controller
     {
         FeatureManager featureManager = new FeatureManager(new EfFeatureDal());

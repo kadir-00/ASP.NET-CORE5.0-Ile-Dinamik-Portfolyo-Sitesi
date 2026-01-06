@@ -1,5 +1,9 @@
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
+using Business.Abstract;
+using Business.Concrete;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,8 +31,19 @@ namespace Core2
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddDbContext<Context>();
-            services.AddIdentity<WriterUser, WriterRole>().AddEntityFrameworkStores<Context>();
-			services.AddControllersWithViews();
+			services.AddIdentity<WriterUser, WriterRole>().AddEntityFrameworkStores<Context>();
+			services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.Cookie.HttpOnly = true;
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+				options.AccessDeniedPath = "/ErrorPage/Error403/";
+				options.LoginPath = "/AdminLogin/Index/";
+			});
+
+			services.AddScoped<IMessageDal, EfMessageDal>();
+			services.AddScoped<IMessageService, MessageManager>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,17 +69,14 @@ namespace Core2
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapControllerRoute(
+				  name: "areas",
+				  pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}"
+				);
+
+				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                  name: "areas",
-                  pattern: "{area:exists}/{controller=Default}/{action=Index}/{id?}"
-                );
-            });
-        }
+		}
 	}
 }

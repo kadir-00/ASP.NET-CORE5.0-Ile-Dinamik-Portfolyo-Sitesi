@@ -1,10 +1,12 @@
 using Business.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SocialMediaController : Controller
     {
         SocialMediaManager socialMediaManager = new SocialMediaManager(new EfSocialMediaDal());
@@ -24,7 +26,7 @@ namespace Core2.Controllers
         [HttpPost]
         public IActionResult AddSocialMedia(SocialMedia socialMedia)
         {
-            socialMedia.Status = true; // Default to true or let user decide? Usually true on creation.
+            socialMedia.Status = true;
             socialMediaManager.TAdd(socialMedia);
             return RedirectToAction("Index");
         }
@@ -37,31 +39,16 @@ namespace Core2.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditSocialMedia(int id)
+        public IActionResult UpdateSocialMedia(int id)
         {
             var values = socialMediaManager.TGetById(id);
             return View(values);
         }
 
         [HttpPost]
-        public IActionResult EditSocialMedia(SocialMedia socialMedia)
+        public IActionResult UpdateSocialMedia(SocialMedia socialMedia)
         {
             socialMediaManager.TUpdate(socialMedia);
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult ChangeStatus(int id)
-        {
-            var account = socialMediaManager.TGetById(id);
-            if (account.Status == true)
-            {
-                account.Status = false;
-            }
-            else
-            {
-                account.Status = true;
-            }
-            socialMediaManager.TUpdate(account);
             return RedirectToAction("Index");
         }
     }

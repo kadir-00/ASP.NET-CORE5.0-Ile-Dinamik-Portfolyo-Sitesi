@@ -10,8 +10,8 @@ namespace Core2.Areas.Writer.ViewComponents
         AnnoncoumentManager annoncoumentManager = new AnnoncoumentManager(new EfAnnoncoumentDal());
         public IViewComponentResult Invoke()
         {
-           
-            var values = annoncoumentManager.TGetList().Take(5).ToList();
+
+            var values = annoncoumentManager.TGetList().Take(3).ToList();
             return View(values);
 
         }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Core2.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         public PartialViewResult PartialSideBar()
@@ -14,17 +16,17 @@ namespace Core2.Controllers
             return PartialView();
         }
 
-        public PartialViewResult PartialNavbar() 
+        public PartialViewResult PartialNavbar()
         {
             return PartialView();
         }
 
-        public PartialViewResult PartialHead() 
+        public PartialViewResult PartialHead()
         {
             return PartialView();
         }
 
-        public PartialViewResult PartialScript() 
+        public PartialViewResult PartialScript()
         {
             return PartialView();
         }

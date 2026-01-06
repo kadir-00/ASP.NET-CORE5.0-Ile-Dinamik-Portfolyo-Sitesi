@@ -1,0 +1,29 @@
+@model EntityLayer.Concrete.Annoncoument
+@{
+    ViewData["Title"] = "EditAnnouncement";
+    Layout = "~/Areas/Writer/Views/Shared/_WriterLayout.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Duyuru Düzenleme Paneli</h4>
+            <form class="forms-sample" method="post">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <input type="hidden" name="Date" value="@Model.Date" />
+                <input type="hidden" name="Status" value="@Model.Status" />
+
+                <div class="form-group">
+                    <label>Başlık</label>
+                    <input type="text" class="form-control" name="Title" value="@Model.Title">
+                </div>
+                <div class="form-group">
+                    <label>İçerik</label>
+                    <textarea class="form-control" name="Content" rows="10">@Model.Content</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mr-2">Güncelle</button>
+                <button class="btn btn-light">İptal</button>
+            </form>
+        </div>
+    </div>
+</div>
