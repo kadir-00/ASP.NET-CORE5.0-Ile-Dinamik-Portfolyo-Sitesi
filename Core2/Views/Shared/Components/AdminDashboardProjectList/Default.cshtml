@@ -1,0 +1,31 @@
+@using EntityLayer.Concrete
+@model List<Portfolio>
+
+<div class="col-md-6 col-xl-4 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Proje Gorselleri</h4>
+            <div class="d-flex flex-row justify-content-between">
+                <p class="text-muted mb-1"> Son Projeler </p>
+            </div>
+            <div class="preview-list">
+                @foreach (var item in Model)
+                {
+                    <div class="preview-item border-bottom">
+                        <div class="preview-thumbnail">
+                            <img src="@item.ImageUrl" alt="image" class="rounded-circle" />
+                        </div>
+                        <div class="preview-item-content d-flex flex-grow">
+                            <div class="flex-grow">
+                                <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                                    <h6 class="preview-subject">@item.Name</h6>
+                                </div>
+                                <p class="text-muted">@item.ProjectUrl</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

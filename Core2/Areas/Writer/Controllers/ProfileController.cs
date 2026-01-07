@@ -1,6 +1,7 @@
 ﻿using Core2.Areas.Writer.Models;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
@@ -10,6 +11,7 @@ namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
     [Route("Writer/[controller]/[action]")]
+    [Authorize(Roles = "Admin,Writer")]
 
     public class ProfileController : Controller
     {
@@ -21,7 +23,7 @@ namespace Core2.Areas.Writer.Controllers
         }
 
         [HttpGet]
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             UserEditViewModel model = new UserEditViewModel();
@@ -51,9 +53,9 @@ namespace Core2.Areas.Writer.Controllers
             var result = await _userManager.UpdateAsync(user);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
             return View();
         }
-        }
+    }
 }

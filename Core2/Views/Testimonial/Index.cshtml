@@ -9,11 +9,12 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Referans Listesi</h4>
+            <a href="/Testimonial/AddTestimonial/" class="btn btn-info">Yeni Referans Ekle</a>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                          
+
                             <th> # </th>
                             <th> Isim Soyisim </th>
                             <th> Sirket </th>
@@ -25,20 +26,20 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                        <tr>
-                           
-                            <td>
-                                <img src="@item.ImageUrl" alt="image" />
-                              @*   <img src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/images/faces/face1.jpg" alt="image" /> *@
-                              
-                            </td>
-                            <td> @item.ClientName </td>
-                            <td> @item.Company </td>
-                            <td> @item.Title </td>
-                            <td>  <a href="/Testimonial/DeleteTestimonial/@item.TestimonialID" class="btn btn-outline-danger"> Sil </a>  </td>
-                                <td> <a href="/Testimonial/EditTestimonial/@item.TestimonialID" class="btn btn-outline-success"> Detaylar </a> </td>
-                           
-                        </tr>
+                            <tr>
+
+                                <td>
+                                    <img src="@item.ImageUrl" alt="image" />
+                                    @*   <img src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/images/faces/face1.jpg" alt="image" /> *@
+
+                                </td>
+                                <td> @item.ClientName </td>
+                                <td> @item.Company </td>
+                                <td> @item.Title </td>
+                                <td>  <a href="/Testimonial/DeleteTestimonial/@item.TestimonialID" class="btn btn-outline-danger"> Sil </a>  </td>
+                                    <td> <a href="/Testimonial/EditTestimonial/@item.TestimonialID" class="btn btn-outline-success"> Detaylar </a> </td>
+
+                            </tr>
                         }
                     </tbody>
                 </table>

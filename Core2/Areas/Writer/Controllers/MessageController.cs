@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
-    [Authorize(Roles = "Writer")]
+    [Authorize(Roles = "Admin,Writer")]
     public class MessageController : Controller
     {
         WriterMessageManager writerMessageManager = new WriterMessageManager(new EfWriterMessageDal());
@@ -47,7 +47,7 @@ namespace Core2.Areas.Writer.Controllers
             return View(values);
         }
 
-        public async Task<IActionResult> ReceiverMessageDetails(int id)
+        public IActionResult ReceiverMessageDetails(int id)
         {
             var values = writerMessageManager.TGetById(id);
             return View(values);

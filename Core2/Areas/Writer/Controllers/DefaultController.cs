@@ -8,7 +8,7 @@ using System;
 namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
-    [Authorize(Roles = "Writer")]
+    [Authorize(Roles = "Admin,Writer")]
     public class DefaultController : Controller
     {
         AnnoncoumentManager annoncoumentManager = new AnnoncoumentManager(new EfAnnoncoumentDal());

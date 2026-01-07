@@ -35,8 +35,12 @@
 </div>
 @await Component.InvokeAsync("StatisticsDashboard2")
 
-@await Component.InvokeAsync("ProjectList")
-
 <div class="row">
     @await Component.InvokeAsync("ToDoListPanel")
+    @await Component.InvokeAsync("AdminDashboardMessageList")
+    @await Component.InvokeAsync("AdminDashboardProjectList")
+</div>
+
+<div class="row">
+    @await Component.InvokeAsync("VisitorMap")
 </div>

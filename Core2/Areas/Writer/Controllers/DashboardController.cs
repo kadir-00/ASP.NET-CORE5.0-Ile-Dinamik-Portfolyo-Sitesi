@@ -10,7 +10,7 @@ using System.Xml.Linq;
 namespace Core2.Areas.Writer.Controllers
 {
     [Area("Writer")]
-    [Authorize(Roles = "Writer")]
+    [Authorize(Roles = "Admin,Writer")]
     public class DashboardController : Controller
     {
         private readonly UserManager<WriterUser> _userManager;
